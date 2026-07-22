@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An interactive playground for the AXQL expression engine." />
+    <title>AXQL Playground</title>
+  </head>
+  <body>
+    <main class="site-shell">
+      <header class="hero">
+        <a class="brand" href="https://github.com/Axiomorix/AXQL-Core" aria-label="AXQL Core on GitHub">
+          <span class="brand-mark" aria-hidden="true">λ</span>
+          <span>AXQL <em>Core</em></span>
+        </a>
+        <a class="github-link" href="https://github.com/Axiomorix/AXQL-Core">View source <span aria-hidden="true">↗</span></a>
+        <div class="hero-copy">
+          <p class="eyebrow">EXPRESSION PLAYGROUND</p>
+          <h1>Write a rule.<br /><span>See it work.</span></h1>
+          <p class="lede">Experiment with AXQL’s safe, deterministic expression language in your browser. Nothing leaves this page.</p>
+        </div>
+      </header>
+
+      <section class="workbench" aria-label="AXQL playground">
+        <aside class="examples-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">START HERE</p>
+            <h2>Examples</h2>
+          </div>
+          <div id="examples" class="examples" role="list"></div>
+          <div class="keyboard-tip"><kbd>⌘</kbd><kbd>↵</kbd><span>Run expression</span></div>
+        </aside>
+
+        <form id="playground" class="editors" novalidate>
+          <label class="editor-card" for="expression">
+            <span class="editor-heading"><span>Expression</span><span class="editor-language">AXQL</span></span>
+            <textarea id="expression" spellcheck="false" aria-describedby="expression-help"></textarea>
+            <span id="expression-help" class="visually-hidden">Enter an AXQL expression.</span>
+          </label>
+          <label class="editor-card" for="context">
+            <span class="editor-heading"><span>Context</span><span class="editor-language">JSON</span></span>
+            <textarea id="context" spellcheck="false" aria-describedby="context-help"></textarea>
+            <span id="context-help" class="visually-hidden">Enter a JSON object used as the evaluation context.</span>
+          </label>
+          <div class="run-row">
+            <p id="status" class="status" role="status">Ready to evaluate.</p>
+            <button class="run-button" type="submit"><span>Run</span><span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+
+        <section class="output" aria-label="Evaluation output">
+          <div class="result-card">
+            <div class="result-heading">
+              <div><p class="eyebrow">EVALUATION</p><h2>Result</h2></div>
+              <span id="result-state" class="result-state" data-state="idle">WAITING</span>
+            </div>
+            <pre id="result" class="result-value" aria-live="polite">Press Run to evaluate.</pre>
+          </div>
+          <details class="ast-card" open>
+            <summary><span>Parsed AST</span><span class="summary-hint">inspect structure</span></summary>
+            <pre id="ast" class="ast-value">The parsed expression will appear here.</pre>
+          </details>
+        </section>
+      </section>
+
+      <section class="reference" aria-labelledby="reference-title">
+        <div><p class="eyebrow">LANGUAGE REFERENCE</p><h2 id="reference-title">Small language.<br />Clear rules.</h2></div>
+        <div class="reference-grid">
+          <article><h3>Values</h3><code>42  "text"  true  null</code><p>JSON-like scalar literals and arrays.</p></article>
+          <article><h3>Operators</h3><code>+ − × ÷  =  !=  &lt;  &gt;</code><p>Arithmetic and strict comparisons. No coercion.</p></article>
+          <article><h3>Logic</h3><code>AND  OR  NOT</code><p>Boolean-only operators with short-circuiting.</p></article>
+          <article><h3>Functions</h3><code>IF  IN  SUM</code><p>A closed, predictable function set.</p></article>
+        </div>
+      </section>
+    </main>
+    <footer><span>AXQL Core · deterministic expressions for JavaScript hosts</span><a href="https://github.com/Axiomorix/AXQL-Core/blob/master/README.md">Read the docs →</a></footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

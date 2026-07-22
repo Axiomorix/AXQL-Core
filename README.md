@@ -21,3 +21,14 @@ The v0 expression profile supports JSON-like literals, dotted identifiers, array
 Parsing, validation, and evaluation default to 500 AST nodes, a depth of 32, and 10,000 evaluation steps. Override these per operation through `{ limits: { ... } }`.
 
 Use `parse(source, { locations: true })` when debugging source positions. Ordinary `parse(source)` returns the canonical, location-free JSON AST.
+
+## Playground
+
+The repository includes an interactive AXQL playground in `demo/`. Start it locally with:
+
+```sh
+bun install
+bun run demo
+```
+
+Use `bun run demo:build` to create the static production site in `demo/dist`. The GitHub Actions Pages workflow deploys it automatically from `master`; configure the repository's Pages source as **GitHub Actions** once before the first deployment.
