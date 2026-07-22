@@ -52,14 +52,13 @@
           <div class="result-card">
             <div class="result-heading">
               <div><p class="eyebrow">EVALUATION</p><h2>Result</h2></div>
-              <span id="result-state" class="result-state" data-state="idle">WAITING</span>
+              <div class="result-actions">
+                <button id="show-ast" class="ast-button" type="button" disabled>View AST</button>
+                <span id="result-state" class="result-state" data-state="idle">WAITING</span>
+              </div>
             </div>
             <pre id="result" class="result-value" aria-live="polite">Press Run to evaluate.</pre>
           </div>
-          <details class="ast-card" open>
-            <summary><span>Parsed AST</span><span class="summary-hint">inspect structure</span></summary>
-            <pre id="ast" class="ast-value">The parsed expression will appear here.</pre>
-          </details>
         </section>
       </section>
 
@@ -73,6 +72,13 @@
         </div>
       </section>
     </main>
+    <dialog id="ast-dialog" class="ast-dialog" aria-labelledby="ast-title">
+      <div class="dialog-header">
+        <div><p class="eyebrow">PARSED EXPRESSION</p><h2 id="ast-title">AST JSON tree</h2></div>
+        <button id="close-ast" class="dialog-close" type="button" aria-label="Close AST preview">×</button>
+      </div>
+      <pre id="ast" class="ast-value">The parsed expression will appear here.</pre>
+    </dialog>
     <footer><span>AXQL Core · deterministic expressions for JavaScript hosts</span><a href="https://github.com/Axiomorix/AXQL-Core/blob/master/README.md">Read the docs →</a></footer>
     <script type="module" src="/src/main.ts"></script>
   </body>

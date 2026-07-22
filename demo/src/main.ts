@@ -49,6 +49,9 @@ const status = requiredElement<HTMLParagraphElement>("status");
 const result = requiredElement<HTMLPreElement>("result");
 const ast = requiredElement<HTMLPreElement>("ast");
 const resultState = requiredElement<HTMLSpanElement>("result-state");
+const showAstButton = requiredElement<HTMLButtonElement>("show-ast");
+const astDialog = requiredElement<HTMLDialogElement>("ast-dialog");
+const closeAstButton = requiredElement<HTMLButtonElement>("close-ast");
 
 function requiredElement<T extends HTMLElement>(id: string): T {
   const element = document.getElementById(id);
@@ -88,6 +91,7 @@ function evaluateExpression(): void {
     const value = evaluate(expression, context);
 
     ast.textContent = formatJson(expression);
+    showAstButton.disabled = false;
     result.textContent = formatValue(value);
     setResultState("success", "VALID");
     status.textContent = "Expression evaluated successfully.";
@@ -95,6 +99,7 @@ function evaluateExpression(): void {
     const diagnostic = describeError(error);
     result.textContent = diagnostic.message;
     ast.textContent = diagnostic.astMessage;
+    showAstButton.disabled = true;
     setResultState("error", diagnostic.label);
     status.textContent = diagnostic.status;
     diagnostic.field?.setAttribute("aria-invalid", "true");
@@ -175,6 +180,16 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
     evaluateExpression();
   }
+});
+
+showAstButton.addEventListener("click", () => {
+  astDialog.showModal();
+});
+
+closeAstButton.addEventListener("click", () => astDialog.close());
+
+astDialog.addEventListener("click", (event) => {
+  if (event.target === astDialog) astDialog.close();
 });
 
 renderExamples();
