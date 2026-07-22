@@ -20,10 +20,14 @@
     "test": "bun test test/*.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "tsc -p tsconfig.build.json",
-    "smoke": "bun run build && bun test smoke/*.test.ts"
+    "smoke": "bun run build && bun test smoke/*.test.ts",
+    "demo": "vite --config vite.config.ts",
+    "demo:build": "vite build --config vite.config.ts",
+    "demo:typecheck": "tsc -p demo/tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@types/bun": "^1.2.0",
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vite": "^7.1.0"
   }
 }
